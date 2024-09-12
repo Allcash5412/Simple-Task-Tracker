@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "==0.114.*"
+uvicorn = "==0.29.*"
+alembic = "==1.13.*"
+pydantic = "==2.7.*"
+bcrypt = "==4.2.*"
+pytest = "==8.3.*"
+pydantic-settings = "==2.2.*"
+sqlalchemy = "==2.0.*"
+aiosqlite = "==0.20.*"
+starlette = "==0.38.*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
