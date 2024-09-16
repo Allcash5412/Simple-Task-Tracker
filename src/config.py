@@ -1,4 +1,5 @@
 import logging.config
+import os
 from pathlib import Path
 from typing import Dict
 
@@ -14,8 +15,7 @@ class DefaultModelConfig:
     model_config: Dict = default_config
 
 
-class GlobalSettings(BaseSettings):
-    model_config = default_config
+class GlobalSettings(BaseSettings, DefaultModelConfig):
     start_setting: str = Field(alias='START_SETTING')
     logger_config: Dict = {}
 
@@ -104,19 +104,29 @@ class GlobalSettings(BaseSettings):
         return LOGGER_CONFIG
 
 
-class SqliteSettings(BaseSettings):
-    model_config = default_config
+class SqliteSettings(BaseSettings, DefaultModelConfig):
     db_name: str = Field(alias='DB_NAME')
     url: str = ''
 
     @field_validator('url')
     def get_database_url(cls, v, info: FieldValidationInfo):
-        return f'sqlite+aiosqlite:///{info.data['db_name']}'
+        absolute_db_path = os.path.join(BASE_DIR, info.data['db_name'])
+        return f'sqlite+aiosqlite:///{absolute_db_path}'
+
+
+class AuthJWT(BaseSettings, DefaultModelConfig):
+    key: str = Field(alias='SECRET')
+    algorithm: str = 'HS256'
+    token_type: str = 'Bearer'
+    access_token_expire_minutes: int = 15
+    refresh_token_expire_days: int = 30
 
 
 class Settings(BaseSettings):
     global_settings: GlobalSettings = GlobalSettings()
     sqlite_settings: SqliteSettings = SqliteSettings()
+    authJWT: AuthJWT = AuthJWT()
+
 
 
 settings = Settings()

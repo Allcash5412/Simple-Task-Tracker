@@ -3,9 +3,9 @@ from typing import List
 from sqlalchemy import String
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 
-from .base import BaseModel
+from .base import Base
 
-class Team(BaseModel):
+class Team(Base):
     """ Model for storing information about the team """
     __tablename__ = 'team'
 

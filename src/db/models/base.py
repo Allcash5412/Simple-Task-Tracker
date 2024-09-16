@@ -1,9 +1,9 @@
-from src.db.database import Base
-from sqlalchemy import BigInteger
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import BigInteger, Integer
+from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 
-class BaseModel(Base):
-    """Base class for all models"""
-    __abstract__ = True
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+class Base(DeclarativeBase):
+    """ Base model """
+
+    id: Mapped[int] = mapped_column(BigInteger().with_variant(Integer, 'sqlite'),
+                                    primary_key=True)
