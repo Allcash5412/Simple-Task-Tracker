@@ -122,11 +122,18 @@ class AuthJWT(BaseSettings, DefaultModelConfig):
     refresh_token_expire_days: int = 30
 
 
+class Test(BaseSettings):
+    model_config = default_config
+    username: str = Field(alias='TEST_USERNAME')
+    password: str = Field(alias='TEST_PASSWORD')
+    email: str = Field(alias='TEST_EMAIL')
+
+
 class Settings(BaseSettings):
     global_settings: GlobalSettings = GlobalSettings()
     sqlite_settings: SqliteSettings = SqliteSettings()
     authJWT: AuthJWT = AuthJWT()
-
+    tests: Test = Test()
 
 
 settings = Settings()
