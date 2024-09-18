@@ -7,13 +7,15 @@ name = "pypi"
 fastapi = "==0.114.*"
 uvicorn = "==0.29.*"
 alembic = "==1.13.*"
-pydantic = "==2.7.*"
 bcrypt = "==4.2.*"
 pytest = "==8.3.*"
 pydantic-settings = "==2.2.*"
 sqlalchemy = "==2.0.*"
 aiosqlite = "==0.20.*"
 starlette = "==0.38.*"
+pyjwt = "==2.8.*"
+pydantic = {extras = ["email"], version = "*"}
+python-multipart = "==0.0.9"
 
 [dev-packages]
 
