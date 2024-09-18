@@ -1,0 +1,7 @@
+tests/services/auth/test_register.py
+tests/services/auth/test_login.py
+tests/services/auth/test_user.py
+-vv
+--disable-warnings
+--tb=short
+--durations=0
