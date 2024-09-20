@@ -19,7 +19,7 @@ task_tracker = APIRouter(prefix='/task_tracker')
 logger = logging.getLogger('app')
 
 
-@task_tracker.post('/create_task/')
+@task_tracker.post('/create_task/', description='Allowed user roles: (ADMIN, TEAM_LEAD, PROJECT_MANAGER)')
 async def create_task(current_user: CurrentUser, task: APICreateTask,
                       user_repository: UserRepositoryDep, task_repository: TaskRepositoryDep):
 
@@ -37,7 +37,7 @@ async def create_task(current_user: CurrentUser, task: APICreateTask,
     return created_task
 
 
-@task_tracker.put('/update_task/{task_id}')
+@task_tracker.put('/update_task/{task_id}', description='Allowed user roles: all roles except GUEST')
 async def update_task(task_id: int, current_user: CurrentUser, task: APIUpdateTask,
                       user_repository: UserRepositoryDep, task_repository: TaskRepositoryDep):
 
@@ -61,7 +61,7 @@ async def update_task(task_id: int, current_user: CurrentUser, task: APIUpdateTa
     return updated_task
 
 
-@task_tracker.delete('/delete_task/{task_id}')
+@task_tracker.delete('/delete_task/{task_id}', description='Allowed user roles: (ADMIN, TEAM_LEAD, PROJECT_MANAGER)')
 async def delete_task(task_id: int, current_user: CurrentUser, user_repository: UserRepositoryDep, task_repository: TaskRepositoryDep):
 
     delete_task_service = DeleteTaskService(current_user, user_repository,
