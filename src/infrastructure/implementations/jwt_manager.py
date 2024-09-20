@@ -6,7 +6,7 @@ from jwt import InvalidTokenError
 
 from fastapi import HTTPException
 
-from src.services.interfaces import AbstractJWTManager
+from src.services.auth.interfaces import AbstractJWTManager
 from src.config import settings
 from src.infrastructure.dto import CredentialsToEncodeToken, CredentialsToDecodeToken, TokenPayload, JWTTokens
 from src.domain.auth.entities import UserBase

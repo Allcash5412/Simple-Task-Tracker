@@ -1,6 +1,6 @@
 import bcrypt
 
-from src.services.interfaces import AbstractPasswordManager
+from src.services.auth.interfaces import AbstractPasswordManager
 
 
 class PasswordManager(AbstractPasswordManager):

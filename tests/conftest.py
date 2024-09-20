@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import async_scoped_session, async_sessionmaker, cre
 from src.repositories.user.repositories import TestUserRepository
 from src.infrastructure.dto import UserCreate
 from src.infrastructure.implementations.password_manager import PasswordManager
-from src.services.interfaces import AbstractUserRegister
+from src.services.auth.interfaces import AbstractUserRegister
 from src.config import settings
 from src.utils import random_lower_string, random_email
 

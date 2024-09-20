@@ -2,7 +2,7 @@ import pytest
 
 from tests.conftest import TestUser
 
-from src.services.auth import UserValidationService
+from src.services.auth.services import UserValidationService
 
 from src.repositories.user.repositories import UserRepository
 

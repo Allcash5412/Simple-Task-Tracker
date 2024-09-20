@@ -118,7 +118,7 @@ class AuthJWT(BaseSettings, DefaultModelConfig):
     key: str = Field(alias='SECRET')
     algorithm: str = 'HS256'
     token_type: str = 'Bearer'
-    access_token_expire_minutes: int = 15
+    access_token_expire_minutes: int = 60
     refresh_token_expire_days: int = 30
 
 

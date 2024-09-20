@@ -4,7 +4,7 @@ from typing import Annotated
 from fastapi import Form
 from pydantic import EmailStr
 
-from src.services.interfaces import AbstractUserLogin, AbstractUserRegister
+from src.services.auth.interfaces import AbstractUserLogin, AbstractUserRegister
 
 
 @dataclass

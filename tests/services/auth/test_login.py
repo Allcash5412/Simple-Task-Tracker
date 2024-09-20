@@ -4,8 +4,8 @@ from fastapi import HTTPException
 
 from tests.conftest import TestUser
 
-from src.services.interfaces import AbstractUserRepository
-from src.services.auth import LoginService
+from src.services.auth.interfaces import AbstractUserRepository
+from src.services.auth.services import LoginService
 
 from src.domain.auth.entities import UserBase
 

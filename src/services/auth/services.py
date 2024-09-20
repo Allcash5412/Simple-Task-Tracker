@@ -1,14 +1,15 @@
 from datetime import datetime
-from typing import Dict
+from typing import Dict, Iterable
 
 from fastapi import HTTPException
 
+from src.db.enums import UserRole
 from src.exceptions import get_exception_401_unauthorized_with_detail, get_exception_400_bad_request_with_detail
 
-from src.services.interfaces import AbstractUserRepository, AbstractUserLogin, AbstractUserRegister, AbstractPasswordManager, AbstractJWTManager
+from src.services.auth.interfaces import AbstractUserRepository, AbstractUserLogin, AbstractUserRegister, AbstractPasswordManager, AbstractJWTManager
 from src.domain.auth.entities import UserBase
 from src.infrastructure.dto import UserCreate, JWTTokens
-from src.services.dto import RegisteredUser
+from src.services.auth.dto import RegisteredUser
 
 
 class RegisterService:
@@ -113,7 +114,7 @@ class LoginService:
         self.check_user_credentials(user, self.user_login.password)
         return user
 
-    def check_user_credentials(self, user: UserBase, received_password: str) -> bool | HTTPException:
+    def check_user_credentials(self, user: UserBase, received_password: str) -> HTTPException | bool:
         if not user or not self.password_manager.validate_password(received_password, user.password.encode()):
             raise get_exception_401_unauthorized_with_detail('invalid username or password')
         return True
@@ -134,3 +135,7 @@ class UserValidationService:
 
     async def check_on_exiting_email(self, email: str) -> bool:
         return True if await self.repository.get_user_by(email=email) else False
+
+    @staticmethod
+    def check_role_for_access_to_action(role: UserRole, available_roles: Iterable[UserRole]) -> bool:
+        return role not in available_roles

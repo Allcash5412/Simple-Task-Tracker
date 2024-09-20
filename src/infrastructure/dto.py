@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from pydantic import EmailStr, BaseModel
 
+from src.db.enums import UserRole
 from src.config import settings
 
 
@@ -10,6 +11,7 @@ class UserCreate(BaseModel):
     password: str
     email: EmailStr
     register_at: datetime | None
+    role: UserRole = UserRole.USER
 
 
 class JWTTokens(BaseModel):

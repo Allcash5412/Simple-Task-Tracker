@@ -1,10 +1,13 @@
 from abc import ABC, abstractmethod
+from typing import Dict, List, Sequence
+
 from http.client import HTTPException
-from typing import Dict
 
 from pydantic import EmailStr
+
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.db.models import User
 from src.infrastructure.dto import UserCreate
 
 from src.domain.auth.entities import UserBase
@@ -25,19 +28,23 @@ class AbstractUserRepository(ABC):
         self.session = session
 
     @abstractmethod
-    def get_user_by(self, **filter_by) -> UserBase:
+    async def get_user_by(self, **filter_by) -> UserBase:
         pass
 
     @abstractmethod
-    def update_user_by(self, filter_by: Dict, data_for_update: Dict):
+    async def get_users_by_ids(self, users_ids: List[int]) -> Sequence[User]:
         pass
 
     @abstractmethod
-    def create_user(self, user: UserCreate) -> UserBase:
+    async def update_user_by(self, filter_by: Dict, data_for_update: Dict):
         pass
 
     @abstractmethod
-    def delete_user(self, filter_by: Dict) -> None:
+    async def create_user(self, user: UserCreate) -> UserBase:
+        pass
+
+    @abstractmethod
+    async def delete_user(self, filter_by: Dict) -> None:
         pass
 
     @abstractmethod

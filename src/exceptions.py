@@ -15,6 +15,11 @@ def get_exception_401_unauthorized_with_detail(detail: str) -> HTTPException:
         detail=detail
     )
 
+def get_exception_403_forbidden_with_detail(detail: str) -> HTTPException:
+    return HTTPException(
+        status_code=status.HTTP_403_FORBIDDEN,
+        detail=detail
+    )
 
 def get_exception_404_not_found_with_detail(detail: str) -> HTTPException:
     return HTTPException(

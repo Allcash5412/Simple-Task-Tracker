@@ -5,10 +5,10 @@ from src.infrastructure.implementations.password_manager import PasswordManager
 
 from tests.conftest import TestUserRegister
 
-from src.services.auth import RegisterService, UserValidationService
+from src.services.auth.services import RegisterService, UserValidationService
 from src.config import settings
 from src.exceptions import get_exception_400_bad_request_with_detail
-from src.services.interfaces import AbstractUserRepository
+from src.services.auth.services import AbstractUserRepository
 
 
 class TestRegister:

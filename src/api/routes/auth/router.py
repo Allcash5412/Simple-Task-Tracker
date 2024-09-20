@@ -5,8 +5,8 @@ from fastapi import APIRouter
 from src.infrastructure.implementations.jwt_manager import JWTManager
 from src.infrastructure.implementations.password_manager import PasswordManager
 from .dependencies import UserRegisterFormDep, UserLoginFormDep
-from src.services.auth import RegisterService, LoginService
-from src.services.dto import RegisteredUser
+from src.services.auth.services import RegisterService, LoginService
+from src.services.auth.dto import RegisteredUser
 from src.infrastructure.dto import JWTTokens
 
 from src.api.routes.dependencies import UserRepositoryDep
